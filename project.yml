@@ -1,0 +1,41 @@
+name: ClipboardApp
+options:
+  bundleIdPrefix: com.clipboard
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+
+settings:
+  SWIFT_VERSION: "5.9"
+  DEVELOPMENT_TEAM: ""
+  CODE_SIGN_STYLE: Automatic
+
+targets:
+  ClipboardApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: ClipboardApp
+      - path: Shared
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.clipboard.app
+      INFOPLIST_FILE: ClipboardApp/Info.plist
+      CODE_SIGN_ENTITLEMENTS: ClipboardApp/ClipboardApp.entitlements
+      TARGETED_DEVICE_FAMILY: "1,2"
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      GENERATE_INFOPLIST_FILE: NO
+    dependencies:
+      - target: ClipboardKeyboard
+
+  ClipboardKeyboard:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ClipboardKeyboard
+      - path: Shared
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.clipboard.app.keyboard
+      INFOPLIST_FILE: ClipboardKeyboard/Info.plist
+      CODE_SIGN_ENTITLEMENTS: ClipboardKeyboard/ClipboardKeyboard.entitlements
+      TARGETED_DEVICE_FAMILY: "1,2"
+      GENERATE_INFOPLIST_FILE: NO
